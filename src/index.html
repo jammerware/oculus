@@ -4,34 +4,21 @@
 <head>
   <meta charset="utf-8">
   <title>Oculus</title>
+  <link rel="stylesheet" href="./css/oculus.css">
 </head>
 
 <body>
-  <p>Please enjoy this Oculus.</p>
+  <div class="w-full p-4">
+    <main role="main" class="w-full flex flex-col h-screen content-center justify-center">
+      <div class="w-full sm:w-3/4 lg:w-1/2 bg-gray-50 rounded-xl m-auto">
+        <div class="bg-white rounded shadow px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <p>Please enjoy this Oculus.</p>
 
-  <oculus-code>
-  </oculus-code>
-
-  <!-- <template id="oculus-template">
-    <div id="oculus-root">
-      <style id="oculus-style-root"></style>
-      <div id="oculus-content-root">
-        <ul>
-          <li>Syntax highlighting</li>
-          <li>Copy</li>
-          <li>Start a CodePen</li>
-        </ul>
-        <hr />
-        <div>
-          <code>
-              <slot name="source">
-                  ng generate component product-alerts
-              </slot>
-          </code>
+          <oculus-code></oculus-code>
         </div>
       </div>
-    </div>
-  </template> -->
+    </main>
+  </div>
 
   <script src="./js/main.js" type="module" defer></script>
 </body>
