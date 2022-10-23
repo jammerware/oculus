@@ -1,19 +1,29 @@
 // @ts-nocheck
-import { Console } from "./console.js";
+import { CssService } from "./css.service.js";
+import { HtmlService } from "./html.service.js";
+import { Logger } from "./logger.js";
+import { ServiceContainer } from "./service.container.js";
 import { template } from './template.js';
 
 /**
- * @property {ShadowRoot} _shadowRoot
+ * @private @property {Console} _console A logging console. It's mine, not yours. Don't touch.
+ * @private @property {ServiceContainer} _serviceContainer Contains the services used herein.
+ * @private @property {ShadowRoot} _shadowRoot
  */
 export class Oculus extends HTMLElement {
-    _console = new Console("Oculus");
+    _services = new ServiceContainer()
     _shadowRoot;
-    _template_id = "oculus-template";
 
     constructor() {
         super();
 
         this._shadowRoot = this.attachShadow({ mode: 'open' });
+        this._services = new ServiceContainer(
+            new CssService(new Logger()),
+            document,
+            new HtmlService(document),
+            new Logger(this)
+        );
     }
 
     async connectedCallback() {
@@ -30,8 +40,20 @@ export class Oculus extends HTMLElement {
         this._shadowRoot.appendChild(shadowClone);
 
         // let's style
-        // longterm: compiletime cdn stuff, or whatever?
-        // TBD
+        const cssText = await this._services.css.load(
+            "css/tw.css",
+            "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css",
+            "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/github.min.css",
+            "css/oculus.css"
+        );
+        const styleRoot = this._shadowRoot.querySelector("style");
+        // const styleElement = this._services.html.createElement("style");
+        // styleRoot.appendChild(styleElement);
+        styleRoot.innerText = cssText;
+
+        const scriptRoot = this._shadowRoot.querySelector("#oculus-script-root");
+        const scriptElement = this._services.html.toElement('<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>');
+        scriptRoot.appendChild(scriptElement);
     }
 
     /**
@@ -43,6 +65,11 @@ export class Oculus extends HTMLElement {
         }
 
         // append tailwind styles
+
+    }
+
+    // time for fake DI
+    _init() {
 
     }
 }

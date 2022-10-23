@@ -1,6 +1,3 @@
 @import url("./tw.css");
-
-body {
-    background: #0D1023 url(../img/bg.jpg) center content-box content-box fixed;
-    min-height: 100vh;
-}
+@import url("//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css");
+@import url("./hljs.github.css");

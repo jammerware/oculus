@@ -1,6 +1,6 @@
 export const template = `
 <div id="oculus-root">
-    <style id="oculus-style-root"></style>
+    <style></style>
     <div id="oculus-content-root">
         <ul>
             <li>Syntax highlighting</li>
@@ -9,12 +9,15 @@ export const template = `
         </ul>
         <hr />
         <div>
-            <code>
-            <slot name="source">
-                ng generate component product-alerts
-            </slot>
-        </code>
+            <pre>
+                <code class="language-bash">
+                    <slot name="source">
+                        ng generate component product-alerts
+                    </slot>
+                </code>
+            </pre>
         </div>
     </div>
+    <div id="oculus-script-root"></div>
 </div>
 `;
