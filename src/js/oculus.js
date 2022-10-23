@@ -1,5 +1,8 @@
 // @ts-nocheck
 import { Console } from "./console.js";
+import { FileService } from "./file.service.js";
+import { template } from './template.js';
+
 // import loadTemplate from "../ts/template.service.js";
 
 // export default async function loadTemplate(templatePath: string, baseUrl: string): Promise<string> {
@@ -22,16 +25,18 @@ export class Oculus extends HTMLElement {
         this._shadowRoot = this.attachShadow({ mode: 'open' });
     }
 
-    connectedCallback() {
-        const templateNode = document
-            .getElementById(this._template_id)
-            ?.cloneNode(true);
+    async connectedCallback() {
+        const templateElement = document.createElement("template");
+        templateElement.innerHTML = template;
+        document.body.appendChild(templateElement);
 
-        if (!templateNode) {
-            this._console.logError(`Couldn't load the template from element #${this._template_id}`);
-        }
+        // now clone 
+        const templateNode = templateElement.cloneNode(true);
 
-        // @ts-ignore
+        // if (!templateNode) {
+        //     this._console.logError(`Couldn't load the template from element #${this._template_id}`);
+        // }
+
         this._shadowRoot.appendChild(templateNode['content']);
 
 
