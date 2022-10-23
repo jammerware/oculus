@@ -1,10 +1,10 @@
 {
   "scripts": {
-    "start": "lite-server"
+    "start": "concurrently --kill-others \"npx tailwindcss -i ./src/css/tailwind-in.css -o ./src/css/tw.css --watch\" \"lite-server\""
   },
   "devDependencies": {
+    "concurrently": "^7.5.0",
     "lite-server": "^2.6.1",
-    "tailwindcss": "^3.2.1",
-    "typescript": "^4.8.4"
+    "tailwindcss": "^3.2.1"
   }
 }
