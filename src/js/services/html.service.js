@@ -26,11 +26,17 @@ export class HtmlService {
     /**
      * @param {string} htmlString The string to elementize
      * 
-     * @returns {DocumentFragment} A document fragment containing the element.
+     * @returns {Node | null} A document fragment containing the element.
      */
-    toElement(htmlString) {
-        const template = this._document.createElement("template");
-        template.innerHTML = htmlString;
-        return template.content;
+    toElementHtml(htmlString) {
+        const placeHolder = this._document.createElement("div");
+        placeHolder.innerHTML = htmlString.trim();
+        return placeHolder.firstChild;
+    }
+
+    toElementText(htmlString) {
+        const placeHolder = this._document.createElement("div");
+        placeHolder.innerText = htmlString.trim();
+        return placeHolder.firstChild;
     }
 }

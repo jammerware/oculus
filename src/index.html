@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>Oculus</title>
   <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="css/oculus.css">
 </head>
 
 <body>
@@ -12,13 +13,36 @@
     <main role="main" class="w-full flex flex-col h-screen content-center justify-center">
       <div class="w-full sm:w-3/4 lg:w-1/2 bg-gray-50 rounded-xl m-auto">
         <div class="bg-white rounded shadow px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-          <oculus-code></oculus-code>
+
+          <oc-oculus-code>
+            <code class="language-js">
+              const thing = new highlighter();
+              highlighter.highlight(document.querySelector("div"));
+            </code>
+          </oc-oculus-code>
+
+          <!-- <div>
+            <pre>
+                <code class="language-js">
+                  const thing = new highlighter(); 
+                  highlighter.highlight(document.querySelector("div"));
+                </code>
+            </pre>
+          </div> -->
+
         </div>
       </div>
     </main>
   </div>
 
-  <script src="./js/main.js" type="module" defer></script>
+  <script src="./main.js" type="module" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+  <!-- <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const hljs = window.hljs;
+      hljs.highlightAll();
+    });
+  </script> -->
 </body>
 
 </html>
