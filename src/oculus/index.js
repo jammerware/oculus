@@ -5,5 +5,5 @@ import "./components/components.js";
 
 // css
 import "./css/oculus.css";
-import "./css/prism.css";
-import "./css/tw.css";
+
+import "./img/bg.jpg";

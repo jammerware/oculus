@@ -3,29 +3,28 @@
   "version": "0.9.0",
   "description": "A code-rendering HTML custom component",
   "type": "module",
-  "main": "src/index.js",
+  "main": "src/oculus.index.js",
   "scripts": {
-    "start": "concurrently --kill-others \"npx tailwindcss -i ./src/oculus/css/tailwind-in.css -o ./src/oculus/css/tw.css --watch\" \"webpack --env mode=development\" \"lite-server\"",
+    "start": "concurrently --kill-others \"npx tailwindcss -i ./src/oculus/css/tailwind-in.css -o ./src/oculus/css/tw.css --watch\" \"npx webpack serve --mode development\"",
     "build": "webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/preset-env": "^7.19.4",
+    "@babel/register": "^7.18.9",
     "babel-loader": "^9.0.0",
-    "babel-register": "^6.26.0",
     "concurrently": "^7.5.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.2.2",
-    "extract-loader": "^5.1.0",
     "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
-    "lite-server": "^2.6.1",
     "mini-css-extract-plugin": "^2.6.1",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.8.0"
   }
 }
