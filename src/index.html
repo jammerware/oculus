@@ -2,47 +2,65 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Oculus</title>
-  <link rel="stylesheet" href="./css/index.css">
-  <link rel="stylesheet" href="css/oculus.css">
+    <meta charset="utf-8">
+    <title>Oculus</title>
+
+    <link rel="stylesheet" href="./oculus/css/index.css">
 </head>
 
 <body>
-  <div class="w-full p-4">
-    <main role="main" class="w-full flex flex-col h-screen content-center justify-center">
-      <div class="w-full sm:w-3/4 lg:w-1/2 bg-gray-50 rounded-xl m-auto">
-        <div class="bg-white rounded shadow px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+    <div class="w-full p-4">
+        <main role="main" class="w-full flex flex-col h-screen content-center justify-center">
+            <div class="w-full sm:w-3/4 lg:w-1/2 bg-gray-50 rounded-xl m-auto">
+                <div class="bg-white rounded shadow px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <oc-code-renderer language="javascript" isEscaped="false">
+                        const inMyNativeTongue = "BITCH!";
+                    </oc-code-renderer>
+                </div>
+            </div>
+        </main>
+    </div>
 
-          <oc-oculus-code>
-            <code class="language-js">
-              const thing = new highlighter();
-              highlighter.highlight(document.querySelector("div"));
-            </code>
-          </oc-oculus-code>
+    <script src="./oculus/index.js" defer></script>
+    <!-- 
+    <template id="app-fuck">
+        <style>
+            @import url("./oculus/index/oculus.css");
+        </style>
 
-          <!-- <div>
+        <div>
             <pre>
-                <code class="language-js">
-                  const thing = new highlighter(); 
-                  highlighter.highlight(document.querySelector("div"));
+                <code>
                 </code>
             </pre>
-          </div> -->
-
         </div>
-      </div>
-    </main>
-  </div>
+    </template>
 
-  <script src="./main.js" type="module" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
-  <!-- <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const hljs = window.hljs;
-      hljs.highlightAll();
-    });
-  </script> -->
+    <script src="./js/prism.js"></script>
+    <script>
+        customElements.define(
+            "app-fuck",
+            class extends HTMLElement {
+                _prism = Window.Prism;
+
+                constructor() {
+                    super();
+                    const template = document.getElementById("app-fuck");
+                    const templateContent = template.content;
+
+                    const shadowRoot = this.attachShadow({ mode: "open" });
+                    shadowRoot.appendChild(templateContent.cloneNode(true));
+                }
+
+                connectedCallback() {
+                    const codeElement = this.shadowRoot.querySelectorAll("code")[0];
+                    const language = this.getAttribute("language");
+
+                    codeElement.innerHTML = window.Prism.highlight(this.innerHTML, window.Prism.languages[language], language).trim();
+                }
+            }
+        );
+    </script> -->
 </body>
 
 </html>

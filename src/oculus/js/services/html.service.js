@@ -17,10 +17,12 @@ export class HtmlService {
 
     /**
      * 
-     * @param {keyof globalThis.HTMLElementTagNameMap} elementType The type of element to create.
+     * @param {string} innerHtml - the raw html content that represents your new element.
      */
-    createElement(elementType) {
-        return this._document.createElement(elementType);
+    createElement(innerHtml) {
+        const el = this._document.createElement("div");
+        el.innerHTML = innerHtml;
+        return el.firstChild;
     }
 
     /**

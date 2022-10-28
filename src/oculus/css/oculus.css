@@ -1,0 +1,10 @@
+@import url("./tw.css");
+@import url("./prism.css");
+
+:host {
+    display: block;
+}
+
+pre {
+    margin: 0;
+}

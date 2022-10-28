@@ -1,9 +1,8 @@
 // @ts-nocheck
-import { CssService } from "../css.service.js";
-import { HtmlService } from "../html.service.js";
-import { Logger } from "../logger.js";
-import { ServiceContainer } from "../service.container.js";
-import { template } from '../template.js';
+import { HtmlService } from "../../js/services/html.service.js";
+import { Logger } from "../../js/services/logger.js";
+import { ServiceContainer } from "../../js/services/service.container.js";
+import * as template from "./oculus.template.html";
 
 /**
  * @private @property {Console} _console A logging console. It's mine, not yours. Don't touch.
