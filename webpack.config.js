@@ -75,7 +75,6 @@ const baseConfig = {
 const devConfig = {
     mode: "development",
     devtool: "eval-source-map",
-    watch: true,
     output: {
         assetModuleFilename: 'assets.bundle[ext][query]',
         clean: true,

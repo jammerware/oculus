@@ -5,7 +5,8 @@
   "type": "module",
   "main": "src/oculus.index.js",
   "scripts": {
-    "start": "concurrently --kill-others \"npx tailwindcss -i ./src/oculus/css/tailwind-in.css -o ./src/oculus/css/tw.css --watch\" \"npx webpack serve --mode development\"",
+    "prestart": "rimraf dist",
+    "start": "concurrently --kill-others \"npx tailwindcss -i ./src/oculus/css/tailwind-in.css -o ./src/oculus/css/tw.css --watch\" \"npx webpack serve --env mode=development\"",
     "build": "webpack"
   },
   "devDependencies": {
@@ -20,6 +21,7 @@
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
+    "rimraf": "^3.0.2",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.1",
     "webpack": "^5.74.0",
