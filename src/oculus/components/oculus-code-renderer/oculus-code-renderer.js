@@ -22,13 +22,11 @@ class OcCodeRenderer extends HTMLElement {
             Prism
         );
 
-        // const template = document.getElementById("oc-code-renderer-fuck");
-        const shadowRoot = this.attachShadow({ mode: "open" });
+        // INTO THE SHADOW
+        this.attachShadow({ mode: "open" });
     }
 
     connectedCallback() {
-        console.log("i'm attached");
-
         // load the template and append it to the document
         const templateElement = this._services.html.createElement(template.default);
         this._services.document.body.appendChild(templateElement);
@@ -43,7 +41,4 @@ class OcCodeRenderer extends HTMLElement {
     }
 }
 
-customElements.define(
-    "oc-code-renderer",
-    OcCodeRenderer
-);
+customElements.define("oc-code-renderer", OcCodeRenderer);

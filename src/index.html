@@ -22,45 +22,6 @@
     </div>
 
     <script src="./oculus/index.js" defer></script>
-    <!-- 
-    <template id="app-fuck">
-        <style>
-            @import url("./oculus/index/oculus.css");
-        </style>
-
-        <div>
-            <pre>
-                <code>
-                </code>
-            </pre>
-        </div>
-    </template>
-
-    <script src="./js/prism.js"></script>
-    <script>
-        customElements.define(
-            "app-fuck",
-            class extends HTMLElement {
-                _prism = Window.Prism;
-
-                constructor() {
-                    super();
-                    const template = document.getElementById("app-fuck");
-                    const templateContent = template.content;
-
-                    const shadowRoot = this.attachShadow({ mode: "open" });
-                    shadowRoot.appendChild(templateContent.cloneNode(true));
-                }
-
-                connectedCallback() {
-                    const codeElement = this.shadowRoot.querySelectorAll("code")[0];
-                    const language = this.getAttribute("language");
-
-                    codeElement.innerHTML = window.Prism.highlight(this.innerHTML, window.Prism.languages[language], language).trim();
-                }
-            }
-        );
-    </script> -->
 </body>
 
 </html>

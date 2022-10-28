@@ -1,5 +1,6 @@
 {
     "server": {
-        "baseDir": "./dist"
+        "baseDir": "./dist",
+        "open": false
     }
 }

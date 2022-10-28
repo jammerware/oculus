@@ -35,10 +35,4 @@ export class HtmlService {
         placeHolder.innerHTML = htmlString.trim();
         return placeHolder.firstChild;
     }
-
-    toElementText(htmlString) {
-        const placeHolder = this._document.createElement("div");
-        placeHolder.innerText = htmlString.trim();
-        return placeHolder.firstChild;
-    }
 }
