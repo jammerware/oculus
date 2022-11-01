@@ -38,25 +38,28 @@ class OcCodeRenderer extends HTMLElement {
         }
 
         lines.splice(0, shittyLines + 1);
-        const numberOfSpacesInFirstLine = lines[0].match(/(?<spaces>^\s*)/m).groups.spaces.length;
+        const numberOfSpacesInFirstLine = lines[0].match(/(?<spaces>^\s*)/m)?.groups?.spaces?.length || 0;
         const fixedLines = [];
 
         for (let line of lines) {
             let spaceCount = 0;
-            const numbaOfspacesInnaLine = line.match(/^(\s+)/m)[0]?.length || 0;
+
+            const spaceMatch = line.match(/^(?<lineBeginningSpaces>\s+)/m);
+            let numbaOfspacesInnaLine = 0;
+            if (spaceMatch?.groups?.lineBeginningSpaces) {
+                numbaOfspacesInnaLine = spaceMatch.groups.lineBeginningSpaces.length;
+            }
+
             const minSpaces = Math.min(numbaOfspacesInnaLine, numberOfSpacesInFirstLine);
             line = line.substring(minSpaces);
             fixedLines.push(line);
         }
-        console.log("fixed lines", fixedLines);
-        const allLines = fixedLines.join("\n");
 
+        const allLines = fixedLines.join("\n");
         const codeElement = this.shadowRoot.querySelector("code");
-        console.log("codeelement", codeElement);
         const language = this.getAttribute("language");
         codeElement.setAttribute("language", this.getAttribute("language"));
         const innerHtml = window.Prism.highlight(allLines, window.Prism.languages[language], language).trim();
-        console.log("inner html", innerHtml)
 
         // then append a clone to the shadowroot
         codeElement.innerHTML = innerHtml;
