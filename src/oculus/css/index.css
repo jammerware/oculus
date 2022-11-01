@@ -1,6 +1,0 @@
-@import url("./tw.css");
-
-body {
-    background: #0D1023 url(../img/bg.jpg) center content-box content-box fixed;
-    min-height: 100vh;
-}

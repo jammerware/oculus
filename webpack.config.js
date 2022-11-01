@@ -4,13 +4,11 @@ import { merge } from "webpack-merge";
 import { fileURLToPath } from "url";
 import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import CopyPlugin from "copy-webpack-plugin";
+//const __dirname = path.dirname(fileURLToPath(process.cwd()));
+const __dirname = process.cwd();
 
 const outDir = "dist";
-const cssPreservePaths = [
-    /oculus\.css$/i,
-    /index\.css$/i
-];
 
 const baseConfig = {
     entry: "./src/oculus/index.js",
@@ -30,7 +28,9 @@ const baseConfig = {
         rules: [
             {
                 test: /\.js$/i,
-                exclude: /node_modules/,
+                exclude: [
+                    /node_modules/
+                ],
                 use: { loader: "babel-loader" },
             },
             {
@@ -38,37 +38,22 @@ const baseConfig = {
                 exclude: /node_modules/,
                 loader: "html-loader",
             },
-            // {
-            //     test: cssPreservePaths,
-            //     use: [
-            //         {
-            //             loader: "file-loader",
-            //             options: {
-            //                 name: "oculus.css",
-            //                 publicPath: "/dist"
-            //             }
-            //         },
-            //         { loader: MiniCssExtractPlugin.loader },
-            //         { loader: "css-loader" }
-            //     ]
-            // },
             {
                 test: /\.css$/i,
-                // exclude: cssPreservePaths,
-                use: [
-                    { loader: "style-loader" },
-                    { loader: "css-loader" }
-                ]
-            },
-            {
-                test: /\.jpg/i,
-                type: "asset/resource"
+                exclude: /node_modules/,
+                use: [MiniCssExtractPlugin.loader, "css-loader"]
             }
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: "src/index.html" }),
-        new MiniCssExtractPlugin()
+        new CopyPlugin({
+            patterns: [
+                { from: "demo", to: "./" }
+            ]
+        }),
+        new MiniCssExtractPlugin({
+            filename: "./oculus.global.css"
+        })
     ]
 };
 
