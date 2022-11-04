@@ -1,5 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css");
 @import url("./tw.css");
-@import url("./prism.css");
 
 :host {
     display: block;

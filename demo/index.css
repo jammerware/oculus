@@ -5,17 +5,26 @@ body {
     min-height: 100vh;
 }
 
-.app-container {
-    background-color: white;
-    border-radius: .8em;
-}
-
 .everything {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-.flex-spacer {
+.flex {
+    display: flex;
+}
+
+.grow {
     flex-grow: 1;
+}
+
+.shrink {
+    flex-shrink: 1;
+}
+
+.app-container {
+    background-color: #eee;
+    border-radius: 2px;
+    padding: 2rem;
 }

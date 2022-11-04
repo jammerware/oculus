@@ -1,8 +1,8 @@
 // @ts-nocheck
+import * as PrismJs from "prismjs";
 import { HtmlService } from "../../js/services/html.service.js";
 import { Logger } from "../../js/services/logger.js";
 import { ServiceContainer } from "../../js/services/service.container.js";
-import * as Prism from '../../js/services/prism.js'
 import * as template from "./oculus-code-renderer.template.html";
 
 class OcCodeRenderer extends HTMLElement {
@@ -26,6 +26,7 @@ class OcCodeRenderer extends HTMLElement {
         const templateElement = this._services.html.createElement(template.default);
         this._services.document.body.appendChild(templateElement);
         this.shadowRoot.appendChild(templateElement.content.cloneNode(true));
+        console.log("template appended");
 
         const lines = this.innerHTML.split("\n");
         const shittyLines = 0;
@@ -46,6 +47,7 @@ class OcCodeRenderer extends HTMLElement {
 
             const spaceMatch = line.match(/^(?<lineBeginningSpaces>\s+)/m);
             let numbaOfspacesInnaLine = 0;
+
             if (spaceMatch?.groups?.lineBeginningSpaces) {
                 numbaOfspacesInnaLine = spaceMatch.groups.lineBeginningSpaces.length;
             }
@@ -55,15 +57,17 @@ class OcCodeRenderer extends HTMLElement {
             fixedLines.push(line);
         }
 
-        const allLines = fixedLines.join("\n");
+        const allLines = fixedLines.join("\r\n");
         const codeElement = this.shadowRoot.querySelector("code");
         const language = this.getAttribute("language");
         codeElement.setAttribute("language", this.getAttribute("language"));
-        const innerHtml = window.Prism.highlight(allLines, window.Prism.languages[language], language).trim();
+
+        // loadLanguages([language]);
+        const innerHtml = PrismJs.highlight(allLines, window.Prism.languages[language], language)
+            .trim();
 
         // then append a clone to the shadowroot
         codeElement.innerHTML = innerHtml;
-
     }
 }
 
